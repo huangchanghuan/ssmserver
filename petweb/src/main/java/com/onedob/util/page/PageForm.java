@@ -7,35 +7,35 @@ import java.util.Map;
 
 public class PageForm
 {
-	private int totalPage;		//��ҳ��
-	private long totalSize;		//�ܼ�¼��
-	private int pageSize = 10;	//ÿҳ��¼��
-	private int currSize; 		//��ǰҳ���¼��
-	private int pageNo = 1;		//��ǰҳ��
-	private int prevPage;		//��ǰҳ��ǰһҳҳ��
-	private int nextPage;		//��ǰҳ����һҳҳ��
-	private boolean hasPrev;	//�Ƿ���ǰһҳ
-	private boolean hasNext;	//�Ƿ�����һҳ
-	private Map pages;			//��ҳ���ļ��ϣ�����һ�������б��У���ѡ��
-	private int firstPage;		//��һҳҳ�룬��1��ʼ
-	private int lastPage;		//���һҳҳ��
-	private boolean hasFirst;	//�Ƿ��е�һҳ
-	private boolean hasLast;	//�Ƿ������һҳ
-	private Class cls;			//��ǰ������ģ����
-	private String cmd;			//����������
-	private List<Integer> clickPages = new ArrayList<Integer>(5);	//��ҳ�п��Գ��ֵ�������5��ҳ�룬����ҳʹ�á�
-	
-	
+	private int totalPage;		//总页数
+	private long totalSize;		//总记录数
+	private int pageSize = 10;	//每页记录数
+	private int currSize; 		//当前页面记录数
+	private int pageNo = 1;		//当前页码
+	private int prevPage;		//当前页的前一页页码
+	private int nextPage;		//当前页的下一页页码
+	private boolean hasPrev;	//是否有前一页
+	private boolean hasNext;	//是否有下一页
+	private Map pages;			//总页数的集合，放入一个下拉列表中，共选择
+	private int firstPage;		//第一页页码，从1开始
+	private int lastPage;		//最后一页页码
+	private boolean hasFirst;	//是否有第一页
+	private boolean hasLast;	//是否有最后一页
+	private Class cls;			//当前操作的模块类
+	private String cmd;			//操作命令字
+	private List<Integer> clickPages = new ArrayList<Integer>(5);	//翻页行可以出现的连续的5个页码，供翻页使用。
+
+
 
 	public PageForm(){
-		
+
 	}
-	
+
 	/**
-	 * ���캯��
-	 * @param totalSize �ܼ�¼��
-	 * @param pageSize  ÿҳ��¼��
-	 * @param pageNo    ��ǰҳ��
+	 * 构造函数
+	 * @param totalSize 总记录数
+	 * @param pageSize  每页记录数
+	 * @param pageNo    当前页码
 	 */
 	public PageForm(long totalSize,int pageNo,int pageSize)
 	{
@@ -44,7 +44,7 @@ public class PageForm
 		this.setPageNo(pageNo);
 		this.initPageForm();
 	}
-	
+
 	public String getCmd()
 	{
 		return cmd;
@@ -56,7 +56,7 @@ public class PageForm
 	}
 
 	/**
-	 * ��ʼ��ҳ������
+	 * 初始化页面数据
 	 */
 	public void initPageForm(){
 		this.totalPage = (int)this.getTotalSize()/this.getPageSize();
@@ -71,32 +71,32 @@ public class PageForm
 		this.lastPage = this.totalPage;
 		this.hasFirst = this.pageNo==1 ? false:true;
 		this.hasLast = this.pageNo == this.totalPage ? false:true;
-		if(totalPage <= 5){ //���ڻ����5ҳ��ȫ����ʾ.
+		if(totalPage <= 5){ //少于或等于5页，全部显示.
 			for(int i=1;i<=totalPage;++i)
 				clickPages.add(i);
-		}else{//����5ҳ
-			if((totalPage-pageNo)<=2){ //������ҳ����ҳβ
+		}else{//多于5页
+			if((totalPage-pageNo)<=2){ //靠近总页数的页尾
 				for(int i=totalPage-4;i<=totalPage;++i)
 					clickPages.add(i);
 			}
-			if(pageNo <=3){ //������ҳ����ҳͷ
+			if(pageNo <=3){ //靠近总页数的页头
 				for(int i=1;i<=5;++i)
 					clickPages.add(i);
 			}
-			if(pageNo>3 && (totalPage-pageNo)>2){//�����м�λ��
+			if(pageNo>3 && (totalPage-pageNo)>2){//处于中间位置
 				for(int i=pageNo-2;i<=pageNo+2;++i)
 					clickPages.add(i);
 			}
 		}
 	}
-	
+
 	private void initFormList()
 	{
 		pages = new HashMap();
 		for(int i=0; i<this.totalPage; ++i)
 			pages.put(String.valueOf(i+1), String.valueOf(i+1));
 	}
-	
+
 	public int getTotalPage()
 	{
 		return totalPage;
@@ -226,7 +226,7 @@ public class PageForm
 	{
 		this.hasLast = hasLast;
 	}
-	
+
 	public Class getCls()
 	{
 		return cls;

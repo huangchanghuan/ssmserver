@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Actionʵ����
+ * Action实用类
  * @author zhou
  */
 public class ActionUtils {
@@ -92,8 +92,8 @@ public class ActionUtils {
 		excludeMethods.add("getFormatted");
 	}
 	/**
-	 * ��ȡaction��ҵ�񷽷�
-	 * @param cls action��
+	 * 获取action的业务方法
+	 * @param cls action类
 	 * @return
 	 */
 	public static List<String> getMethods(Class<?> cls){
@@ -107,5 +107,5 @@ public class ActionUtils {
 		}
 		return list;
 	}
-	
+
 }

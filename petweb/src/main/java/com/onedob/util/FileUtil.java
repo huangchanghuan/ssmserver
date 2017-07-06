@@ -13,33 +13,33 @@ public class FileUtil
 		createParentPath(file);
 		return file.createNewFile();
 	}
-	
+
 	public static boolean createParentPath(File file)
 	{
 		File parent = file.getParentFile();
 		return parent.mkdirs();
 	}
-	
+
 	public static boolean rename(File srcFile, String newName)
 	{
-		File file = new File(srcFile.getParent()+ File.separator+newName);
+		File file = new File(srcFile.getParent()+File.separator+newName);
 		createParentPath(file);
 		return srcFile.renameTo(file);
 	}
-	
+
 	public static boolean cutFile(File srcFile, String descDir)
 	{
-		File file = new File(descDir+ File.separator+srcFile.getName());
+		File file = new File(descDir+File.separator+srcFile.getName());
 		createParentPath(file);
 		return srcFile.renameTo(file);
 	}
-	
+
 	public static boolean renameTo(File srcFile, File descFile)
 	{
 		createParentPath(descFile);
 		return srcFile.renameTo(descFile);
 	}
-	
+
 	public static boolean copyFile(File srcFile, String descPath)
 	{
 		boolean flag = true;
@@ -68,7 +68,7 @@ public class FileUtil
 		}
 		return flag;
 	}
-	
+
 	public static boolean deleteDir(File file)
 	{
 		boolean flag = true;
@@ -94,10 +94,10 @@ public class FileUtil
 		}
 		return flag;
 	}
-	
+
 	/**
-	 * ѹ���ַ���
-	 * @param s ��ѹ�����ַ�������
+	 * 压缩字符串
+	 * @param s 待压缩的字符串内容
 	 * @return
 	 */
 	public static byte[] compressString(String s){
@@ -112,8 +112,8 @@ public class FileUtil
 	}
 
 	/**
-	 * ��ѹ��
-	 * @param b ����ѹ������
+	 * 解压流
+	 * @param b 待解压的内容
 	 * @return
 	 */
 	public static byte[] decompressString(byte[] b){

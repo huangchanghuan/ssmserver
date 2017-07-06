@@ -12,12 +12,12 @@ public class Md5Encrypt {
 			'7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 
 	/**
-	 * ���ַ�������MD5ǩ��
-	 * 
+	 * 对字符串进行MD5签名
+	 *
 	 * @param text
-	 *            ����
-	 * 
-	 * @return ����
+	 *            明文
+	 *
+	 * @return 密文
 	 */
 	public static String md5(String text) {
 		MessageDigest msgDigest = null;
@@ -30,8 +30,8 @@ public class Md5Encrypt {
 		}
 
 		try {
-			msgDigest.update(text.getBytes("GBK"));    //ע��Ľӿ��ǰ���ָ��������ʽǩ��
- 
+			msgDigest.update(text.getBytes("GBK"));    //注意改接口是按照指定编码形式签名
+
 		} catch (UnsupportedEncodingException e) {
 
 			throw new IllegalStateException(

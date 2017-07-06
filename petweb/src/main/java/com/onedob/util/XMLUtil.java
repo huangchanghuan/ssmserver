@@ -16,9 +16,9 @@ import java.util.Map;
 
 public class XMLUtil {
 
-	/**
-     * ����xml,���ص�һ��Ԫ�ؼ�ֵ�ԡ������һ��Ԫ�����ӽڵ㣬��˽ڵ��ֵ���ӽڵ��xml���ݡ�
-    * @param strxml
+    /**
+     * 解析xml,返回第一级元素键值对。如果第一级元素有子节点，则此节点的值是子节点的xml数据。
+     * @param strxml
      * @return
      * @throws IOException
      */
@@ -28,9 +28,9 @@ public class XMLUtil {
         if(null == strxml || "".equals(strxml)) {
             return null;
         }
-        
+
         Map m = new HashMap();
-        
+
         InputStream in = new ByteArrayInputStream(strxml.getBytes("UTF-8"));
         SAXReader builder = new SAXReader ();
         Document doc = builder.read(in);
@@ -47,18 +47,18 @@ public class XMLUtil {
             } else {
                 v = XMLUtil.getChildrenText(children);
             }
-            
+
             m.put(k, v);
         }
-        
-        //�ر���
+
+        //关闭流
        in.close();
-        
+
         return m;
     }
-    
+
     /**
-     * ��ȡ�ӽ���xml
+     * 获取子结点的xml
      * @param children
      * @return String
      */
@@ -79,7 +79,7 @@ public class XMLUtil {
                 sb.append("</" + name + ">");
             }
         }
-        
+
         return sb.toString();
     }
 }

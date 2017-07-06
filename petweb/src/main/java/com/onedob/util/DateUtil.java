@@ -1,5 +1,7 @@
 package com.onedob.util;
 
+import com.onedob.util.DoubleUtil;
+
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -25,33 +27,33 @@ public class DateUtil {
 		calendar.setTime(date);
 		long past = calendar.getTimeInMillis();
 
-		// ��������
+		// 相差的秒数
 		long time = (now - past) / 1000;
 
 		StringBuffer sb = new StringBuffer();
 		if (time <= 0) {
-			return sb.append("�ո�").toString();
-		} else if (time > 0 && time < 60) { // 1Сʱ��
-			return sb.append(time + "��ǰ").toString();
+			return sb.append("刚刚").toString();
+		} else if (time > 0 && time < 60) { // 1小时内
+			return sb.append(time + "秒前").toString();
 		} else if (time > 60 && time < 3600) {
-			return sb.append(time / 60 + "����ǰ").toString();
+			return sb.append(time / 60 + "分钟前").toString();
 		} else if (time >= 3600 && time < 3600 * 24) {
-			return sb.append(time / 3600 + "Сʱǰ").toString();
+			return sb.append(time / 3600 + "小时前").toString();
 		} else if (time >= 3600 * 24 && time < 3600 * 48) {
-			return sb.append("����").toString();
+			return sb.append("昨天").toString();
 		} else if (time >= 3600 * 48 && time < 3600 * 72) {
-			return sb.append("ǰ��").toString();
+			return sb.append("前天").toString();
 		} else if (time >= 3600 * 72) {
-			// return sb.append(time / 86400 + "��ǰ").toString();
+			// return sb.append(time / 86400 + "天前").toString();
 			return sb.append(dateToString(date, "yyyy-MM-dd")).toString();
 		}
-		// return sb.append(time / 86400 + "��ǰ").toString();
+		// return sb.append(time / 86400 + "天前").toString();
 		return sb.append(dateToString(date, "yyyy-MM-dd")).toString();
 	}
 
 	/**
-	 * �����ַ���ת��ΪDate
-	 * 
+	 * 日期字符串转换为Date
+	 *
 	 * @param dateStr
 	 * @param format
 	 * @return
@@ -71,18 +73,18 @@ public class DateUtil {
 	}
 
 	/**
-	 * ����ת��Ϊ�ַ���
-	 * 
+	 * 日期转换为字符串
+	 *
 	 * @param timeStr
 	 * @param format
 	 * @return
 	 */
 	public static String dateToString(String timeStr, String format) {
-		// �ж��Ƿ��ǽ���
+		// 判断是否是今年
 		Date date = strToDate(timeStr, format);
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
-		// ����ǽ���Ļ�����ȡ��xx��xx�ա����ڸ�ʽ
+		// 如果是今年的话，才取“xx月xx日”日期格式
 		if (calendar.get(Calendar.YEAR) == date.getYear()) {
 			return DATE_FORMAT_TILL_DAY_CURRENT_YEAR.format(date);
 		}
@@ -90,8 +92,8 @@ public class DateUtil {
 	}
 
 	/**
-	 * ��ʱ��ת��sqlʱ��;
-	 * 
+	 * 把时间转成sql时间;
+	 *
 	 * @param date
 	 * @return
 	 */
@@ -102,8 +104,8 @@ public class DateUtil {
 	}
 
 	/**
-	 * ��ʱ��ת��20070101������ʽ;
-	 * 
+	 * 把时间转成20070101这种形式;
+	 *
 	 * @param date
 	 * @return
 	 */
@@ -115,8 +117,8 @@ public class DateUtil {
 	}
 
 	/**
-	 * ��ȡ��������,��ʽΪ:"yyyyMMdd";
-	 * 
+	 * 获取当天日期,格式为:"yyyyMMdd";
+	 *
 	 * @return
 	 */
 	public static String getCurrentDateString() {
@@ -128,8 +130,8 @@ public class DateUtil {
 	}
 
 	/**
-	 * ��ʱ��Ϊ��ʱ,���ص�ǰʱ��;
-	 * 
+	 * 当时间为空时,返回当前时间;
+	 *
 	 * @param obj
 	 * @return
 	 */
@@ -140,8 +142,8 @@ public class DateUtil {
 	}
 
 	/**
-	 * ����ָ��������ĩ;
-	 * 
+	 * 返回指定日期月末;
+	 *
 	 * @param date
 	 * @return
 	 */
@@ -161,8 +163,8 @@ public class DateUtil {
 	}
 
 	/**
-	 * ��ʱ��ת����String; ��"2001/07/04  12:08:56 ";
-	 * 
+	 * 把时间转换成String; 如"2001/07/04  12:08:56 ";
+	 *
 	 * @param date
 	 * @return
 	 */
@@ -174,8 +176,8 @@ public class DateUtil {
 	}
 
 	/**
-	 * ��ʱ��ת����String; ��"2001/07/04  12:08:56 ";
-	 * 
+	 * 把时间转换成String; 如"2001/07/04  12:08:56 ";
+	 *
 	 * @param date
 	 * @return
 	 */
@@ -187,8 +189,8 @@ public class DateUtil {
 	}
 
 	/**
-	 * ��ʱ��ת����String; ��"20010704120856 ";
-	 * 
+	 * 把时间转换成String; 如"20010704120856 ";
+	 *
 	 * @param date
 	 * @return
 	 */
@@ -200,8 +202,8 @@ public class DateUtil {
 	}
 
 	/**
-	 * ��"2007/01/01"�����ַ���ת��ʱ��Date;
-	 * 
+	 * 把"2007/01/01"这类字符串转成时间Date;
+	 *
 	 * @param str
 	 * @return
 	 */
@@ -235,8 +237,9 @@ public class DateUtil {
 	}
 
 	/**
-	 * ��ʱ��ת��"yyymmdd"��ʽ;
+	 * 把时间转成"yyymmdd"形式;
 	 *
+	 * @param str
 	 * @return
 	 */
 	public static String toYMDString(Date date) {
@@ -247,8 +250,8 @@ public class DateUtil {
 	}
 
 	/**
-	 * �·�����;
-	 * 
+	 * 月份增加;
+	 *
 	 * @param date
 	 * @param i
 	 * @return
@@ -261,8 +264,8 @@ public class DateUtil {
 	}
 
 	/**
-	 * ������;
-	 * 
+	 * 日增加;
+	 *
 	 * @param date
 	 * @param i
 	 * @return
@@ -275,8 +278,8 @@ public class DateUtil {
 	}
 
 	/**
-	 * Сʱ����;
-	 * 
+	 * 小时增加;
+	 *
 	 * @param date
 	 * @param i
 	 * @return
@@ -287,22 +290,22 @@ public class DateUtil {
 		ca.add(Calendar.HOUR_OF_DAY, i);
 		return ca.getTime();
 	}
-	
+
 	/**
-	 * ����ʱ����
+	 * 设置时分秒
 	 */
-	public static Date setTime(Date date, Integer hours, Integer minute, Integer second) {
+	public static Date setTime(Date date, Integer hours,Integer minute,Integer second) {
 		Calendar c = Calendar.getInstance();
-        c.setTime(date);
-        c.set(Calendar.MINUTE, minute);
-        c.set(Calendar.SECOND, second);
-        c.set(Calendar.HOUR, hours);
-        return c.getTime();
+		c.setTime(date);
+		c.set(Calendar.MINUTE, minute);
+		c.set(Calendar.SECOND, second);
+		c.set(Calendar.HOUR, hours);
+		return c.getTime();
 	}
 
 	/**
-	 * �Ƚ�start�����Ƿ�С�ڻ����end;
-	 * 
+	 * 比较start日期是否小于或等于end;
+	 *
 	 * @param start
 	 * @param end
 	 * @return
@@ -354,8 +357,8 @@ public class DateUtil {
 	}
 
 	/**
-	 * ��ʱ��ת����Ϊ�ַ���;
-	 * 
+	 * 把时间转换成为字符串;
+	 *
 	 * @param date
 	 * @param format
 	 * @return
@@ -368,8 +371,8 @@ public class DateUtil {
 	}
 
 	/**
-	 * ���ַ���ת��ʱ��;
-	 * 
+	 * 把字符串转成时间;
+	 *
 	 * @param strDate
 	 * @param format
 	 * @return
@@ -386,8 +389,8 @@ public class DateUtil {
 	}
 
 	/**
-	 * �����������ڵ�����֮��
-	 * 
+	 * 计算两个日期的天数之差
+	 *
 	 * @param beginDate
 	 * @param endDate
 	 * @return
@@ -398,8 +401,8 @@ public class DateUtil {
 	}
 
 	/**
-	 * �����������ڵ�Сʱ֮��
-	 * 
+	 * 计算两个日期的小时之差
+	 *
 	 * @param beginDate
 	 * @param endDate
 	 * @return
@@ -410,8 +413,8 @@ public class DateUtil {
 	}
 
 	/**
-	 * �����������ڵķ���֮��
-	 * 
+	 * 计算两个日期的分钟之差
+	 *
 	 * @param beginDate
 	 * @param endDate
 	 * @return
@@ -423,11 +426,11 @@ public class DateUtil {
 	}
 
 	/**
-	 * �ж������Ƿ�����������
-	 * 
-	 * @param nowDate���Ƚϵ�����
-	 * @param beginDate��������
-	 * @param endDate��������
+	 * 判断日期是否在日期区间
+	 *
+	 * @param nowDate：比较的日期
+	 * @param beginDate：开区间
+	 * @param endDate：闭区间
 	 * @return
 	 */
 	public static boolean inDateRange(Date nowDate, Date beginDate, Date endDate) {
@@ -445,12 +448,12 @@ public class DateUtil {
 	}
 
 	/**
-	 * ��ȡʱ�䱸ע ���� �ܶ�12��27���� ���� 12��27��
-	 * 
+	 * 获取时间备注 例如 周二12月27或者 今天 12月27日
+	 *
 	 * @param date
-	 *            ��ʽyyyy-MM-dd
+	 *            格式yyyy-MM-dd
 	 * @param type
-	 *            1�ǻ�ȡ�ܼ�,0�ǻ�ȡ����,����,����
+	 *            1是获取周几,0是获取今天,明天,后天
 	 * @return
 	 */
 	public static String getDateMark(String date, int type) {
@@ -464,60 +467,60 @@ public class DateUtil {
 		if (type == 0) {
 			Date now = DateUtil.strToDate(DateUtil.dateToString(new Date(), DateUtil.DATE_FORMAT3),
 					DateUtil.DATE_FORMAT3);
-			c_month = ca.get(Calendar.MONTH) + 1;// ȡ���·�
-			c_day = ca.get(Calendar.DAY_OF_MONTH);// ȡ������
+			c_month = ca.get(Calendar.MONTH) + 1;// 取得月份
+			c_day = ca.get(Calendar.DAY_OF_MONTH);// 取得日期
 			String dayMark = "";
 			int day1 = DateUtil.dateDaysSub(now, showDate).intValue();
 			switch (day1) {
-			case 0:
-				dayMark = "����";
-				break;
-			case 1:
-				dayMark = "����";
-				break;
-			case 2:
-				dayMark = "����";
-				break;
+				case 0:
+					dayMark = "今天";
+					break;
+				case 1:
+					dayMark = "明天";
+					break;
+				case 2:
+					dayMark = "后天";
+					break;
 			}
-			dateMark = dayMark + c_month + "��" + c_day + "��";
+			dateMark = dayMark + c_month + "月" + c_day + "日";
 		} else {
-			c_month = ca.get(Calendar.MONTH) + 1;// ȡ���·�
-			c_day = ca.get(Calendar.DAY_OF_MONTH);// ȡ������
-			c_week = ca.get(Calendar.DAY_OF_WEEK); // ��ȡ���ܼ�
+			c_month = ca.get(Calendar.MONTH) + 1;// 取得月份
+			c_day = ca.get(Calendar.DAY_OF_MONTH);// 取得日期
+			c_week = ca.get(Calendar.DAY_OF_WEEK); // 获取在周几
 			String weekMark = "";
 			switch (c_week) {
-			case 1:
-				weekMark = "����";
-				break;
-			case 2:
-				weekMark = "��һ";
-				break;
-			case 3:
-				weekMark = "�ܶ�";
-				break;
-			case 4:
-				weekMark = "����";
-				break;
-			case 5:
-				weekMark = "����";
-				break;
-			case 6:
-				weekMark = "����";
-				break;
-			case 7:
-				weekMark = "����";
-				break;
+				case 1:
+					weekMark = "周日";
+					break;
+				case 2:
+					weekMark = "周一";
+					break;
+				case 3:
+					weekMark = "周二";
+					break;
+				case 4:
+					weekMark = "周三";
+					break;
+				case 5:
+					weekMark = "周四";
+					break;
+				case 6:
+					weekMark = "周五";
+					break;
+				case 7:
+					weekMark = "周六";
+					break;
 			}
-			dateMark = weekMark + c_month + "��" + c_day + "��";
+			dateMark = weekMark + c_month + "月" + c_day + "日";
 		}
 		return dateMark;
 	}
 
 	/**
-	 * ��ȡ���������
-	 * 
+	 * 获取明天的日期
+	 *
 	 * @param date
-	 *            ��ʽyyyy-MM-dd
+	 *            格式yyyy-MM-dd
 	 * @return
 	 */
 	public static String getTomorrow(String date) {
@@ -525,5 +528,5 @@ public class DateUtil {
 		String tomorrow = DateUtil.dateToString(addDay(showDate, 1), DateUtil.DATE_FORMAT3);
 		return tomorrow;
 	}
-	
+
 }

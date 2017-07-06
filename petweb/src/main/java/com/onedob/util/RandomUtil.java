@@ -1,12 +1,12 @@
 package com.onedob.util;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class RandomUtil {
 	public static String getInitPassword() {
 		// int
-		// no=Integer.parseInt(SysParametersUtil.getInstance().getValue("PASSWORD_MIN_DIGITS"));����ϵͳû���������������������д��������λ
+		// no=Integer.parseInt(SysParametersUtil.getInstance().getValue("PASSWORD_MIN_DIGITS"));由于系统没有配置这个参数，所以我写死了是六位
 		int no = 6;
 		String initPassword = RandomUtil.getRandomNormalString(no);
 		return initPassword;
@@ -54,7 +54,7 @@ public class RandomUtil {
 
 		return result;
 	}
-	
+
 	public static String getConsumeCode(){
 		String str = "";
 		String nowDate = new SimpleDateFormat("MMdd").format(new Date());
@@ -72,7 +72,7 @@ public class RandomUtil {
 				+radom.substring(7,8);
 		return str;
 	}
-	
+
 	public static void main(String[] args) {
 		for(int i=0;i<3000;i++){
 			String str = getConsumeCode();

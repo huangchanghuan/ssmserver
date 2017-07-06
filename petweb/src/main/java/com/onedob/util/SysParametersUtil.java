@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * �����࣬һ�μ���ȫ��������������ʵ��
+ * 参数类，一次加载全部参数，供后续实用
  * @author Administrator
  *
  */
@@ -14,7 +14,7 @@ public class SysParametersUtil {
 		load();
 	}
 	/**
-	 * ȫ������
+	 * 全部加载
 	 */
 	public static void load(){
 		map.clear();
@@ -26,40 +26,40 @@ public class SysParametersUtil {
 			//}
 		}catch(Exception ex){}
 	}
-	
+
 	/**
-	 * ��ȡ����ֵ
-	 * @param parameter ����
+	 * 获取参数值
+	 * @param parameter 参数
 	 * @return
 	 */
 	public static String getValue(String parameter){
 		return map.get(parameter);
 	}
-	
+
 	/**
-	 * ��ȡ����ֵ
-	 * @param parameter ����
+	 * 获取参数值
+	 * @param parameter 参数
 	 * @return
 	 */
 	public static Integer getValueInt(String parameter){
 		try{
 			return Integer.parseInt(map.get(parameter));
 		}catch(Exception e){
-			
+
 		}
 		return null;
 	}
-	
+
 	/**
-	 * ��ȡ����ֵ
-	 * @param parameter ����
+	 * 获取参数值
+	 * @param parameter 参数
 	 * @return
 	 */
 	public static Boolean getValueBool(String parameter){
 		try{
 			return Boolean.parseBoolean(map.get(parameter));
 		}catch(Exception e){
-			
+
 		}
 		return null;
 	}

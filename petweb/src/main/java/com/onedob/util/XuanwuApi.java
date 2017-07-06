@@ -1,6 +1,5 @@
 package com.onedob.util;
 
-
 import com.onedob.util.pojo.Param;
 import com.xuanwu.gateway.entity.Req;
 import com.xuanwu.gateway.entity.Resp;
@@ -10,18 +9,19 @@ import com.xuanwu.gateway.send.IPostMsg;
 import java.lang.reflect.Field;
 import java.util.*;
 
+
 public class XuanwuApi {
 	private static String signKey = SysParametersUtil.getValue("SIGN_KEY");
 	public static void main(String[] args) throws Exception {
 		
-		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ipï¿½ï¿½Ë¿Ú£ï¿½ï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½é±£ï¿½Ö¸ï¿½Êµï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½
+		//ÉèÖÃÍø¹ØipÓë¶Ë¿Ú£¬ÓÃÓÚ·¢ËÍÐÅÏ¢£¬½¨Òé±£³Ö¸ÃÊµÀýÎªµ¥Àý
 		IPostMsg post = new DefaultPostMsg("42.159.29.20",18090);
 		
-		//ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		//²éÑ¯Á÷Á¿°ü
 //		Req req = queryTrafficPackage();
 		
 		Req req = queryTrafficPackageAll();
-		//ï¿½ï¿½ï¿½ï¿½
+		//¶©¹º
 //		Req req = orderForSingle();
 //		Req req = orderForBatch();
 		
@@ -30,8 +30,8 @@ public class XuanwuApi {
 	}
 	
 	/**
-	 * ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	 * ï¿½ï¿½Ñ¯ï¿½ï¿½Òµï¿½ÂµÄµï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * ²éÑ¯Á÷Á¿°ü
+	 * ²éÑ¯ÆóÒµÏÂµÄµ¥¸öÊÖ»úºÅÊÊÓÃµÄÁ÷Á¿°ü
 	 * @return
 	 */
 	public static Req queryTrafficPackage() {
@@ -40,14 +40,14 @@ public class XuanwuApi {
 		req.setCompanyCode("admin@test");
 		req.setRequestID(UUID.randomUUID().toString());
 		req.setTimeStamp(System.currentTimeMillis());
-		String data = "{phoneno:\"13500000001\"}";//ï¿½ï¿½Ñ¯ï¿½ï¿½Òµï¿½ÂµÄµï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		String data = "{phoneno:\"13500000001\"}";//²éÑ¯ÆóÒµÏÂµÄµ¥¸öÊÖ»úºÅÊÊÓÃµÄÁ÷Á¿°ü
 		req.setData(data);
 		req.setSign(getSign(req, signKey));
 		return req;
 	}
 	/**
-	 * ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	 * ï¿½ï¿½Ñ¯ï¿½ï¿½Òµï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * ²éÑ¯Á÷Á¿°ü
+	 * ²éÑ¯ÆóÒµÊÊÓÃµÄÁ÷Á¿°ü
 	 * @return
 	 */
 	public static Req queryTrafficPackageAll() {
@@ -60,7 +60,7 @@ public class XuanwuApi {
 		return req;
 	}
 	/**
-	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë¶©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * µ¥¸öºÅÂë¶©¹ºÁ÷Á¿°ü¶©¹º
 	 * @return
 	 */
 	public static Req orderForSingle() {
@@ -71,7 +71,7 @@ public class XuanwuApi {
 		req.setTimeStamp(System.currentTimeMillis());
 		req.setSign(getSign(req, signKey));
 		String data = "{"
-				+ "batchname:\"ï¿½ï¿½ï¿½Ôµï¿½ï¿½ï¿½2\","
+				+ "batchname:\"²âÊÔµ¥·¢2\","
 				+ "phoneno:\"13500000005\","
 				+ "bizcode:\"CM0100010M\""
 				+ "}";
@@ -80,10 +80,10 @@ public class XuanwuApi {
 	}
 	
 	/**
-	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë¶©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	 * @param batchName ï¿½ï¿½ï¿½ï¿½
-	 * @param phoneNo ï¿½Ö»ï¿½ï¿½ï¿½
-	 * @param bizCode ï¿½ï¿½ï¿½ï¿½ï¿½Ó¿ï¿½
+	 * µ¥¸öºÅÂë¶©¹ºÁ÷Á¿°ü¶©¹º
+	 * @param batchName Ãû³Æ
+	 * @param phoneNo ÊÖ»úºÅ
+	 * @param bizCode Á÷Á¿½Ó¿Ú
 	 * @return
 	 */
 	public static Req orderForSingle(String batchName, String phoneNo, String bizCode) {
@@ -103,7 +103,7 @@ public class XuanwuApi {
 	}
 	
 	/**
-	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * ÅúÁ¿¶©¹º
 	 * @return
 	 */
 	public static Req orderForBatch() {
@@ -113,7 +113,7 @@ public class XuanwuApi {
 		req.setRequestID(UUID.randomUUID().toString());
 		req.setTimeStamp(System.currentTimeMillis());
 		String data = "{"
-				+ "batchname:\"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½batchï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\","
+				+ "batchname:\"²âÊÔÅú´ÎÃû³Æbatch´íÎó±àÂë\","
 				+ "memberlist:[{\"phoneno\":\"13500000001\"},{\"phoneno\":\"18600000001\"},{\"phoneno\":\"13300000001\"}],"
 				+ "orderpkgrule:[{\"bizcode\":\"CM0100010M\"},{\"bizcode\":\"CU0100020M\"},{\"bizcode\":\"CT0100005M\"}]"
 				+ "}";
@@ -123,9 +123,9 @@ public class XuanwuApi {
 	}
 	
 	/**
-	 * Ç©ï¿½ï¿½ï¿½ã·¨
-	 * @param req ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½
-	 * @param signKey ï¿½ï¿½Òµï¿½ï¿½Ô¿
+	 * Ç©ÃûËã·¨
+	 * @param req ÇëÇóÏûÏ¢¶ÔÏó
+	 * @param signKey ÆóÒµÃÜÔ¿
 	 * @return
 	 */
 	public static String getSign(Req req, String signKey) {
@@ -136,12 +136,12 @@ public class XuanwuApi {
 		return getSign(signKey, requestID, companyCode, timeStamp, actionType);
 	}
 	/**
-	 * Ç©ï¿½ï¿½ï¿½ã·¨
-	 * @param signKey ï¿½ï¿½Òµï¿½ï¿½Ô¿
-	 * @param requestID ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë®ï¿½ï¿½
-	 * @param companyCode ï¿½ï¿½Òµï¿½Ë»ï¿½
-	 * @param timeStamp Ê±ï¿½ï¿½ï¿½
-	 * @param actionType ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * Ç©ÃûËã·¨
+	 * @param signKey ÆóÒµÃÜÔ¿
+	 * @param requestID ÇëÇóÁ÷Ë®ºÅ
+	 * @param companyCode ÆóÒµÕË»§
+	 * @param timeStamp Ê±¼ä´Á
+	 * @param actionType ÇëÇóÀàÐÍ
 	 * @return
 	 */
 	public static String getSign(String signKey, String requestID, String companyCode, long timeStamp, String actionType) {
@@ -161,7 +161,7 @@ public class XuanwuApi {
 			if (value==null || value.equals("")) {
 				continue;
 			}
-			if (i == keys.size() - 1) {// Æ´ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½&ï¿½Ö·ï¿½
+			if (i == keys.size() - 1) {// Æ´½ÓÊ±£¬²»°üÀ¨×îºóÒ»¸ö&×Ö·û
 				prestr = prestr + key + "=" + value;
 			} else {
 				prestr = prestr + key + "=" + value + "&";
