@@ -3,14 +3,14 @@ package com.onedob.util.alipay.httpClient;
 import org.apache.commons.httpclient.NameValuePair;
 
 /* *
- *������HttpRequest
- *���ܣ�Http�������ķ�װ
- *��ϸ����װHttp����
- *�汾��3.3
- *���ڣ�2011-08-17
- *˵����
- *���´���ֻ��Ϊ�˷����̻����Զ��ṩ���������룬�̻����Ը����Լ���վ����Ҫ�����ռ����ĵ���д,����һ��Ҫʹ�øô��롣
- *�ô������ѧϰ���о�֧�����ӿ�ʹ�ã�ֻ���ṩһ���ο���
+ *类名：HttpRequest
+ *功能：Http请求对象的封装
+ *详细：封装Http请求
+ *版本：3.3
+ *日期：2011-08-17
+ *说明：
+ *以下代码只是为了方便商户测试而提供的样例代码，商户可以根据自己网站的需要，按照技术文档编写,并非一定要使用该代码。
+ *该代码仅供学习和研究支付宝接口使用，只是提供一个参考。
  */
 
 public class HttpRequest {
@@ -22,43 +22,43 @@ public class HttpRequest {
     public static final String METHOD_POST       = "POST";
 
     /**
-     * �������url
+     * 待请求的url
      */
-    private String url               = null;
+    private String             url               = null;
 
     /**
-     * Ĭ�ϵ�����ʽ
+     * 默认的请求方式
      */
-    private String method            = METHOD_POST;
+    private String             method            = METHOD_POST;
 
     private int                timeout           = 0;
 
     private int                connectionTimeout = 0;
 
     /**
-     * Post��ʽ����ʱ��װ�õĲ���ֵ��
+     * Post方式请求时组装好的参数值对
      */
     private NameValuePair[]    parameters        = null;
 
     /**
-     * Get��ʽ����ʱ��Ӧ�Ĳ���
+     * Get方式请求时对应的参数
      */
-    private String queryString       = null;
+    private String             queryString       = null;
 
     /**
-     * Ĭ�ϵ�������뷽ʽ
+     * 默认的请求编码方式
      */
-    private String charset           = "GBK";
+    private String             charset           = "GBK";
 
     /**
-     * �����𷽵�ip��ַ
+     * 请求发起方的ip地址
      */
-    private String clientIp;
+    private String             clientIp;
 
     /**
-     * ���󷵻صķ�ʽ
+     * 请求返回的方式
      */
-    private HttpResultType     resultType        = HttpResultType.BYTES;
+    private HttpResultType resultType        = HttpResultType.BYTES;
 
     public HttpRequest(HttpResultType resultType) {
         super();

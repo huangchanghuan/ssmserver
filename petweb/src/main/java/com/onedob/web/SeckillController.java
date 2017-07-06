@@ -106,6 +106,12 @@ public class SeckillController {
 		Date now=new Date();
 		return new SeckillResult<Long>(true,now.getTime());
 	}
-	
-	
+
+	@RequestMapping(value="/time/now",method=RequestMethod.DELETE)
+	@ResponseBody
+	public SeckillResult<Long> time1(){
+		Date now=new Date();
+		return new SeckillResult<Long>(true,now.getTime());
+	}
+
 }

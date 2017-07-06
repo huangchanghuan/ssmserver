@@ -1,35 +1,37 @@
 package com.onedob.util.alipay.httpClient;
 
-import com.sunstar.adms.util.alipay.AlipayConfig;
+import com.onedob.util.alipay.AlipayConfig;
 import org.apache.commons.httpclient.Header;
 
 import java.io.UnsupportedEncodingException;
 
+
+
 /* *
- *������HttpResponse
- *���ܣ�Http���ض���ķ�װ
- *��ϸ����װHttp������Ϣ
- *�汾��3.3
- *���ڣ�2011-08-17
- *˵����
- *���´���ֻ��Ϊ�˷����̻����Զ��ṩ���������룬�̻����Ը����Լ���վ����Ҫ�����ռ����ĵ���д,����һ��Ҫʹ�øô��롣
- *�ô������ѧϰ���о�֧�����ӿ�ʹ�ã�ֻ���ṩһ���ο���
+ *类名：HttpResponse
+ *功能：Http返回对象的封装
+ *详细：封装Http返回信息
+ *版本：3.3
+ *日期：2011-08-17
+ *说明：
+ *以下代码只是为了方便商户测试而提供的样例代码，商户可以根据自己网站的需要，按照技术文档编写,并非一定要使用该代码。
+ *该代码仅供学习和研究支付宝接口使用，只是提供一个参考。
  */
 
 public class HttpResponse {
 
     /**
-     * �����е�Header��Ϣ
+     * 返回中的Header信息
      */
     private Header[] responseHeaders;
 
     /**
-     * String���͵�result
+     * String类型的result
      */
-    private String stringResult;
+    private String   stringResult;
 
     /**
-     * btye���͵�result
+     * btye类型的result
      */
     private byte[]   byteResult;
 
