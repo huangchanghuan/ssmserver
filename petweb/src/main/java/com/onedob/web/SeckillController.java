@@ -3,7 +3,7 @@ package com.onedob.web;
 import com.onedob.dto.Exposer;
 import com.onedob.dto.SeckillExecution;
 import com.onedob.dto.SeckillResult;
-import com.onedob.entity.Seckill1;
+import com.onedob.entity.Seckill;
 import com.onedob.enums.SeckillStatEnum;
 import com.onedob.exception.RepeatKillException;
 import com.onedob.exception.SeckillCloseException;
@@ -35,7 +35,7 @@ public class SeckillController {
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public String List(Model model){
 		//获取列表页
-		List<Seckill1> list=seckillService.getSeckillList();
+		List<Seckill> list=seckillService.getSeckillList();
 		model.addAttribute("list",list);
 		//List.jsp+model=ModelAndView
 		return "list";//  /WEB-INF/jsp/"list".jsp
@@ -48,7 +48,7 @@ public class SeckillController {
 		if(seckillId==null){
 			return "redirect:/seckill/list";
 		}
-		Seckill1 seckill=seckillService.getById(seckillId);
+		Seckill seckill=seckillService.getById(seckillId);
 		if(seckill==null){
 			return "forward:seckill/list";
 		}

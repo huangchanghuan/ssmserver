@@ -1,6 +1,6 @@
 package com.onedob.service;
 
-import com.onedob.entity.Seckill1;
+import com.onedob.entity.Seckill;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +18,14 @@ public class SeckillServiceTest {
 	
 	@Test
 	public void testGetSeckillList() {
-		List<Seckill1> list=seckillService.getSeckillList();
+		List<Seckill> list=seckillService.getSeckillList();
 //		logger.info("list={}",list);
 	}
 //
 	@Test
 	public void testGetById() {
 		long id=1000;
-		Seckill1 seckill=seckillService.getById(id);
+		Seckill seckill=seckillService.getById(id);
 //		logger.info("seckill={}",seckill);
 	}
 	

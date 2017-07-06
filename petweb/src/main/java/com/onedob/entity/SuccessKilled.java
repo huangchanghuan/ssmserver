@@ -2,7 +2,7 @@ package com.onedob.entity;
 
 import java.util.Date;
 
-public class SuccessKilled1 {
+public class SuccessKilled {
 	
 	private long seckillId;
 	
@@ -13,7 +13,7 @@ public class SuccessKilled1 {
 	private Date createTime;
 	
 	//多对一
-	private Seckill1 seckill;
+	private Seckill seckill;
 	
 	
 	
@@ -24,11 +24,11 @@ public class SuccessKilled1 {
 				+ "]";
 	}
 
-	public Seckill1 getSeckill() {
+	public Seckill getSeckill() {
 		return seckill;
 	}
 
-	public void setSeckill(Seckill1 seckill) {
+	public void setSeckill(Seckill seckill) {
 		this.seckill = seckill;
 	}
 

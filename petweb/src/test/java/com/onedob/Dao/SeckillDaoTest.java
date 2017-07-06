@@ -1,6 +1,6 @@
 package com.onedob.Dao;
 import com.onedob.dao.SeckillDao;
-import com.onedob.entity.Seckill1;
+import com.onedob.entity.Seckill;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -27,15 +27,15 @@ public class SeckillDaoTest {
 
 	@Test
 	public void testQueryById() {
-		Seckill1 seckill=seckillDao.queryById(1000);
+		Seckill seckill=seckillDao.queryById(1000);
 		System.out.println(seckill);
 	}
 
 	@Test
 	public void testQueryAll() 
 	{
-		List<Seckill1> seckillList=seckillDao.queryAll(0, 100);
-		for(Seckill1 s:seckillList)
+		List<Seckill> seckillList=seckillDao.queryAll(0, 100);
+		for(Seckill s:seckillList)
 		{
 			System.out.println(s);
 		}

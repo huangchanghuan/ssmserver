@@ -1,6 +1,6 @@
 package com.onedob.dto;
 
-import com.onedob.entity.SuccessKilled1;
+import com.onedob.entity.SuccessKilled;
 import com.onedob.enums.SeckillStatEnum;
 
 /**
@@ -19,7 +19,7 @@ public class SeckillExecution {
 	private String stateInfo;
 	
 	//秒杀成功对象
-	private SuccessKilled1 successKilled;
+	private SuccessKilled successKilled;
 
 	
 	
@@ -31,7 +31,7 @@ public class SeckillExecution {
 	}
 
 	public SeckillExecution(long seckillId, SeckillStatEnum statEnum,
-			SuccessKilled1 successKilled) {
+			SuccessKilled successKilled) {
 		super();
 		this.seckillId = seckillId;
 		this.state = statEnum.getState();
@@ -70,11 +70,11 @@ public class SeckillExecution {
 		this.stateInfo = stateInfo;
 	}
 
-	public SuccessKilled1 getSuccessKilled() {
+	public SuccessKilled getSuccessKilled() {
 		return successKilled;
 	}
 
-	public void setSuccessKilled(SuccessKilled1 successKilled) {
+	public void setSuccessKilled(SuccessKilled successKilled) {
 		this.successKilled = successKilled;
 	}
 	

@@ -3,12 +3,10 @@ package com.onedob.util.push;
 import com.onedob.constants.Constants;
 import com.xiaomi.xmpush.server.Message;
 import com.xiaomi.xmpush.server.Message.IOSBuilder;
-import com.xiaomi.xmpush.server.Result;
 import com.xiaomi.xmpush.server.Sender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,13 +66,11 @@ public class XiaoMiPushHelper {
 				.build();
 		try {
 //			Result result = sender.sendToAlias(message, alias, PUSH_RETRIES);
-			Result result =sender.send(message, regId, PUSH_RETRIES);
-			logger.info("push regId:"+regId+",Server response: " + "MessageId: "
-					+ result.getMessageId() + " ErrorCode: "
-					+ result.getErrorCode().getValue()+","+result.getErrorCode().getName()+","+result.getErrorCode().getFullDescription() + " Reason: "
-					+ result.getReason());
-		} catch (IOException e) {
-			e.printStackTrace();
+//			Result result =sender.send(message, regId, PUSH_RETRIES);
+//			logger.info("push regId:"+regId+",Server response: " + "MessageId: "
+//					+ result.getMessageId() + " ErrorCode: "
+//					+ result.getErrorCode().getValue()+","+result.getErrorCode().getName()+","+result.getErrorCode().getFullDescription() + " Reason: "
+//					+ result.getReason());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -135,11 +131,11 @@ public class XiaoMiPushHelper {
 		if(timeToSend!=null)builder.timeToSend(timeToSend);
 		if(flowControl!=null)builder.extra("flow_control", flowControl+"");
 		Message message = builder.build();
-		Result result =sender.send(message, regIds, PUSH_RETRIES);
-		logger.info("push alias:"+regIds+",Server response: " + "MessageId: "
-				+ result.getMessageId() + " ErrorCode: "
-				+ result.getErrorCode().getValue()+","+result.getErrorCode().getName()+","+result.getErrorCode().getFullDescription() + " Reason: "
-				+ result.getReason());
+		//Result result =sender.send(message, regIds, PUSH_RETRIES);
+		//logger.info("push alias:"+regIds+",Server response: " + "MessageId: "
+		//		+ result.getMessageId() + " ErrorCode: "
+		//		+ result.getErrorCode().getValue()+","+result.getErrorCode().getName()+","+result.getErrorCode().getFullDescription() + " Reason: "
+		//		+ result.getReason());
 	}
 
 
@@ -153,12 +149,12 @@ public class XiaoMiPushHelper {
 				.restrictedPackageName(Constants.XIAOMI_USER_PAK_NAME)
 				.notifyType(1)     // 使用默认提示音提示
 				.build();
-		Result result =sender.send(message, "VCDio2xIlyLS5loeyYzqicpBm5rUGfRAenzkD2C/SJk=", 0); //根据regID，发送消息到指定设备上，不重试。
-		System.out.println(result.toString());
-		logger.info("push regId:"+",Server response: " + "MessageId: "
-				+ result.getMessageId() + " ErrorCode: "
-				+ result.getErrorCode().getValue()+","+result.getErrorCode().getName()+","+result.getErrorCode().getFullDescription() + " Reason: "
-				+ result.getReason());
+		//Result result =sender.send(message, "VCDio2xIlyLS5loeyYzqicpBm5rUGfRAenzkD2C/SJk=", 0); //根据regID，发送消息到指定设备上，不重试。
+		//System.out.println(result.toString());
+		//logger.info("push regId:"+",Server response: " + "MessageId: "
+		//		+ result.getMessageId() + " ErrorCode: "
+		//		+ result.getErrorCode().getValue()+","+result.getErrorCode().getName()+","+result.getErrorCode().getFullDescription() + " Reason: "
+		//		+ result.getReason());
 	}
 
 

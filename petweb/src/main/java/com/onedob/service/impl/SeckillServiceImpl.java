@@ -4,8 +4,8 @@ import com.onedob.dao.SeckillDao;
 import com.onedob.dao.SuccessKilledDao;
 import com.onedob.dto.Exposer;
 import com.onedob.dto.SeckillExecution;
-import com.onedob.entity.Seckill1;
-import com.onedob.entity.SuccessKilled1;
+import com.onedob.entity.Seckill;
+import com.onedob.entity.SuccessKilled;
 import com.onedob.enums.SeckillStatEnum;
 import com.onedob.exception.RepeatKillException;
 import com.onedob.exception.SeckillCloseException;
@@ -36,12 +36,12 @@ public class SeckillServiceImpl implements SeckillService {
 	private final String slat = "jdsfjojf*&%&^%^&$%^fbsjhyfsu";
 
 	@Override
-	public List<Seckill1> getSeckillList() {
+	public List<Seckill> getSeckillList() {
 		return seckillDao.queryAll(0, 4);
 	}
 
 	@Override
-	public Seckill1 getById(long seckillId) {
+	public Seckill getById(long seckillId) {
 		return seckillDao.queryById(seckillId);
 	}
 
@@ -51,7 +51,7 @@ public class SeckillServiceImpl implements SeckillService {
 	 * @param seckillId
 	 */
 	public Exposer exportSeckillUrl(long seckillId) {
-		Seckill1 seckill = seckillDao.queryById(seckillId);
+		Seckill seckill = seckillDao.queryById(seckillId);
 		if (seckill == null) {//秒杀商品不存在
 			return new Exposer(false, seckillId);
 		}
@@ -107,7 +107,7 @@ public class SeckillServiceImpl implements SeckillService {
 				throw new RepeatKillException("seckill repeated");
 			}else{
 				//秒杀成功
-				SuccessKilled1 successKilled=successKilledDao.queryByIdWithSeckill(seckillId,userPhone);
+				SuccessKilled successKilled=successKilledDao.queryByIdWithSeckill(seckillId,userPhone);
 				return new SeckillExecution(seckillId, SeckillStatEnum.SUCCESS, successKilled);
 			}
 		}

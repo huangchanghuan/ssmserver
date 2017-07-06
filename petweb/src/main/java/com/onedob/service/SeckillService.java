@@ -2,7 +2,7 @@ package com.onedob.service;
 
 import com.onedob.dto.Exposer;
 import com.onedob.dto.SeckillExecution;
-import com.onedob.entity.Seckill1;
+import com.onedob.entity.Seckill;
 import com.onedob.exception.RepeatKillException;
 import com.onedob.exception.SeckillCloseException;
 import com.onedob.exception.SeckillException;
@@ -19,14 +19,14 @@ public interface SeckillService {
 	 * 查询所有秒杀记录
 	 * @return
 	 */
-	List<Seckill1> getSeckillList();
+	List<Seckill> getSeckillList();
 	
 	/**
 	 * 查询单个秒杀记录
 	 * @param seckillId
 	 * @return
 	 */
-	Seckill1 getById(long seckillId);
+	Seckill getById(long seckillId);
 	
 	/**
 	 * 秒杀开启是输出秒杀接口地址，

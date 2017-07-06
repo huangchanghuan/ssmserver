@@ -1,7 +1,7 @@
 package com.onedob.dao;
 
 import org.apache.ibatis.annotations.Param;
-import com.onedob.entity.SuccessKilled1;
+import com.onedob.entity.SuccessKilled;
 
 public interface SuccessKilledDao {
 	/**
@@ -17,5 +17,5 @@ public interface SuccessKilledDao {
 	 * @param seckillId
 	 * @return
 	 */
-	SuccessKilled1 queryByIdWithSeckill(@Param("seckillId")long seckillId, @Param("userPhone")long userPhone);
+	SuccessKilled queryByIdWithSeckill(@Param("seckillId")long seckillId, @Param("userPhone")long userPhone);
 }

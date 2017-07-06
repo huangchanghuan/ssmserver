@@ -5,7 +5,7 @@ import javax.annotation.Resource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import com.onedob.dao.SuccessKilledDao;
-import com.onedob.entity.SuccessKilled1;
+import com.onedob.entity.SuccessKilled;
 
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -26,7 +26,7 @@ public class SuccessKilledDaoTest {
 
 	@Test
 	public void testQueryByIdWithSeckill() {
-		SuccessKilled1 successKilled=successKilledDao.queryByIdWithSeckill(1000L,13189652012L);
+		SuccessKilled successKilled=successKilledDao.queryByIdWithSeckill(1000L,13189652012L);
 		System.out.println("===="+successKilled);
 	}
 
